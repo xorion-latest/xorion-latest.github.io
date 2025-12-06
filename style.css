@@ -1,0 +1,105 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: monospace;
+  background: #000;
+}
+
+/* Binary canvas full screen */
+#binaryCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #000;
+}
+
+/* Logo higher and scaled down to 75% of previous size */
+.logo-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1%; /* moved even higher */
+  z-index: 2;
+  pointer-events: none;
+}
+
+.project-logo {
+  width: 576px; /* 75% of 768px */
+  height: auto;
+  filter: drop-shadow(0 0 20px #00ff88);
+}
+
+/* Button box: 25% larger than baseline */
+.button-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 25%; /* placement */
+  z-index: 3;
+
+  display: flex;
+  flex-direction: row;
+  gap: 38px; /* 25% larger gap */
+  align-items: center;
+  justify-content: center;
+
+  padding: 28px 55px; /* 25% larger padding */
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 18px; /* 25% larger radius */
+
+  /* Neon glow effect */
+  box-shadow:
+    0 0 14px rgba(0, 255, 140, 0.6),
+    0 0 28px rgba(0, 255, 140, 0.4),
+    inset 0 0 18px rgba(0, 255, 140, 0.3);
+  outline: 1px solid rgba(0, 255, 140, 0.3);
+}
+
+/* Buttons: 25% larger */
+.btn {
+  padding: 18px 35px; /* 25% larger padding */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 22px; /* 25% larger font */
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 14px rgba(0, 255, 140, 0.5);
+}
+
+/* Download button slightly larger */
+.download {
+  background-color: #00ff00;
+  color: #000;
+  font-size: 26px;      /* 25% larger font */
+  padding: 22px 45px;   /* 25% larger padding */
+}
+
+.discord {
+  background-color: #5865F2;
+  color: #fff;
+}
+
+.github {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .project-logo { width: 320px; }
+  .button-container { gap: 20px; padding: 20px 30px; border-radius: 12px; }
+  .btn { font-size: 16px; padding: 12px 20px; }
+  .download { font-size: 18px; padding: 14px 24px; }
+}
