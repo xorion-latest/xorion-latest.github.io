@@ -17,6 +17,9 @@ function setup() {
   drops = Array(columns).fill().map(() =>
     Math.floor(Math.random() * canvas.height / fontSize)
   );
+
+  ctx.font = fontSize + 'px monospace';
+  ctx.textBaseline = 'top';
 }
 setup();
 
@@ -77,3 +80,27 @@ function draw() {
 
 // Classic slower cadence
 setInterval(draw, 80);
+
+// ===== Credits Fade-In =====
+const credits = document.querySelector('.credits-section');
+if (credits && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          credits.classList.add('visible');
+          io.disconnect();
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  io.observe(credits);
+} else if (credits) {
+  window.addEventListener('scroll', () => {
+    const rect = credits.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) {
+      credits.classList.add('visible');
+    }
+  });
+}

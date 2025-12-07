@@ -2,104 +2,207 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
   font-family: monospace;
   background: #000;
+  overflow-y: auto;
 }
 
-/* Binary canvas full screen */
 #binaryCanvas {
-  position: absolute;
+  position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
+  z-index: 0;
   background: #000;
 }
 
-/* Logo higher and scaled down to 75% of previous size */
+/* Logo */
 .logo-wrapper {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 1%; /* moved even higher */
+  position: relative;
   z-index: 2;
-  pointer-events: none;
+  text-align: center;
+  margin-top: -104px;
 }
 
 .project-logo {
-  width: 576px; /* 75% of 768px */
+  width: 576px;
   height: auto;
   filter: drop-shadow(0 0 20px #00ff88);
 }
 
-/* Button box: 25% larger than baseline */
-.button-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 25%; /* placement */
+/* Neon box */
+.content-wrapper {
+  position: relative;
   z-index: 3;
-
   display: flex;
-  flex-direction: row;
-  gap: 38px; /* 25% larger gap */
-  align-items: center;
   justify-content: center;
+  margin-top: -132px;
+  padding-bottom: 80px;
+  width: 100%;
+}
 
-  padding: 28px 55px; /* 25% larger padding */
-  background: rgba(0, 0, 0, 0.9);
-  border-radius: 18px; /* 25% larger radius */
-
-  /* Neon glow effect */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 40px;
+  background: rgba(0, 0, 0, 0.88);
+  border-radius: 14px;
   box-shadow:
-    0 0 14px rgba(0, 255, 140, 0.6),
-    0 0 28px rgba(0, 255, 140, 0.4),
-    inset 0 0 18px rgba(0, 255, 140, 0.3);
+    0 0 12px rgba(0, 255, 140, 0.6),
+    0 0 24px rgba(0, 255, 140, 0.4),
+    inset 0 0 16px rgba(0, 255, 140, 0.3);
   outline: 1px solid rgba(0, 255, 140, 0.3);
 }
 
-/* Buttons: 25% larger */
+/* Top row of buttons */
+.top-row {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Header text */
+.header-text {
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* Buttons base */
 .btn {
-  padding: 18px 35px; /* 25% larger padding */
   text-decoration: none;
   font-weight: bold;
-  font-size: 22px; /* 25% larger font */
-  border-radius: 10px;
+  font-size: 18px;
+  border-radius: 8px;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 0 14px rgba(0, 255, 140, 0.5);
+  transform: translateY(-1px) scale(1.03);
+  box-shadow: 0 0 10px rgba(0, 255, 140, 0.4);
 }
 
-/* Download button slightly larger */
-.download {
-  background-color: #00ff00;
+/* Individual buttons */
+.github {
+  background-color: #fff;
   color: #000;
-  font-size: 26px;      /* 25% larger font */
-  padding: 22px 45px;   /* 25% larger padding */
+  font-size: 20px;
+  padding: 16px 32px; /* same as YouTube */
 }
 
 .discord {
   background-color: #5865F2;
   color: #fff;
+  font-size: 20px;
+  padding: 16px 32px; /* same as YouTube */
 }
 
-.github {
-  background-color: #fff;
+.youtube {
+  background-color: #FF0000;
+  color: #fff;
+  font-size: 20px;
+  padding: 16px 32px;
+}
+
+/* Download button — slightly larger CTA */
+.download {
+  background-color: #00ff00;
   color: #000;
+  font-size: 22px;       /* unchanged */
+  font-weight: bold;     /* unchanged */
+  padding: 24px 44px;    /* bigger box */
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(0, 255, 140, 0.6);
+}
+
+/* Credits Section */
+.credits-section {
+  margin-top: 384px;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.credits-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.credits-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.credits-subtitle {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #bfbfbf;
+}
+
+.credit-block {
+  margin: 20px;
+}
+
+.credit-name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: white;
+}
+
+.credit-role {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #ccc;
+}
+
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ff88;
+  box-shadow: 0 0 12px rgba(0, 255, 140, 0.6);
+}
+
+.credit-row {
+  display: flex;
+  justify-content: center;
+  gap: 120px;
+  margin-top: 40px;
+}
+
+.credit-row .credit-block {
+  flex: 1;
+  max-width: 300px;
 }
 
 /* Responsive tweaks */
+@media (max-width: 900px) {
+  .project-logo { width: 440px; }
+  .content-wrapper { margin-top: -100px; }
+}
+
 @media (max-width: 600px) {
   .project-logo { width: 320px; }
-  .button-container { gap: 20px; padding: 20px 30px; border-radius: 12px; }
+  .top-row { flex-direction: column; gap: 16px; }
+  .button-container { gap: 16px; padding: 18px 24px; border-radius: 12px; }
   .btn { font-size: 16px; padding: 12px 20px; }
-  .download { font-size: 18px; padding: 14px 24px; }
+  .github, .discord, .youtube { font-size: 18px; padding: 14px 28px; }
+  .download { font-size: 22px; font-weight: bold; padding: 20px 36px; border-radius: 10px; }
+  .content-wrapper { margin-top: -92px; }
+  .credit-row { flex-direction: column; gap: 24px; }
 }
