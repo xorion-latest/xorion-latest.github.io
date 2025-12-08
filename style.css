@@ -237,8 +237,11 @@ html, body {
   .content-wrapper { margin-top: -100px; }
 }
 
+/* Mobile-specific adjustments */
 @media (max-width: 600px) {
-  .project-logo { width: 320px; }
+  /* Logo reduced further for better mobile fit */
+  .project-logo { width: 260px; } /* reduced from 320px to 260px */
+
   .top-row { flex-direction: column; gap: 16px; }
   .button-container { gap: 16px; padding: 18px 24px; border-radius: 12px; }
 
@@ -246,6 +249,7 @@ html, body {
   .github, .discord, .youtube { font-size: 18px; padding: 14px 28px; }
   .download { font-size: 22px; font-weight: bold; padding: 20px 36px; border-radius: 10px; }
 
+  /* allow qx9z description to wrap on small screens */
   .credit-role.single-line {
     white-space: normal;
     font-size: 16px;
